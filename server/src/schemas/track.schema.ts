@@ -1,8 +1,9 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
 export type TrackDocument = Track & Document;
 
+@Schema()
 export class Track {
   @Prop()
   name: string;
@@ -11,7 +12,7 @@ export class Track {
   artist: string;
 
   @Prop()
-  track: string;
+  text: string;
 
   @Prop()
   listens: number;
@@ -22,7 +23,7 @@ export class Track {
   @Prop()
   audio: string;
 
-  @Prop({ type: [{ type: Schema.Types.ObjectId, ref: 'Comment' }] })
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Comment' }] })
   comments: Comment[];
 }
 
